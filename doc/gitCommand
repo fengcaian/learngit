@@ -1,0 +1,25 @@
+统计作者代码提交量（某库所有的）：
+```git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | gawk '{ add += $1 ; subs += $2 ; loc += $1 + $2 } END { printf "added lines: %s removed lines : %s total lines: %s\n",add,subs,loc }'```
+
+按时间及作者统计代码提交量：
+```git log --author="$(git config --get user.name)" --pretty=tformat: --since ==2017-12-05 --until=2017-12-06 --numstat | gawk '{ add += $1 ; subs += $2 ; loc += $1 + $2 } END { printf "added lines: %s removed lines : %s total lines: %s\n",add,subs,loc }'```
+
+只按照时间统计：
+```git log --pretty=tformat: --since ==2017-12-04 --until=2017-12-05   --numstat | gawk '{ add += $1 ; subs += $2 ; loc += $1 + $2 } END { printf "added lines: %s removed lines : %s total lines: %s\n",add,subs,loc }'```
+
+仓库提交者前5排名（去掉‘|head -n 5’就是查看全部排名）：
+```git log --pretty='%aN' | sort | uniq -c | sort -k1 -n -r | head -n 5 ```
+
+查看或设置作者/邮箱:
+```git log --global user.name your-new-user-name /  git log --global user.email your-new-email-name```
+your-new-user-name或your-new-email-name不写，表只查看作者、邮箱
+
+win10下创建.开头的文件：```echo ... > .gitignore```(中间几个.都可以)
+
+win10下创建无法删除的文件夹： ```md test..\\```
+
+创建文件夹：```mkdir```
+
+删除文件夹：```rmdir```
+
+git创建文件：```touch test.txt```
